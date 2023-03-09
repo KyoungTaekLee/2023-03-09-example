@@ -1,12 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Document</title>
 </head>
+
 <body>
-  
+
+  <div id="root"></div>
+  <script>
+    const root = document.getElementById('root')
+    // const aa = [1, 2, 3, 4];
+    // aa.forEach(function(element) {
+    //   console.log(element);
+    // })
+    const pr = {
+      a: 1,
+      b: "10",
+      c: 3
+    }
+    elementMaker("div", pr, [1, 22, 3, 4, 5], "2");
+
+    function elementMaker(tagName, props, children, child) {
+      const element = document.createElement(tagName);
+      root.appendChild(element);
+      Object.keys(props).forEach(function (key) {
+        element[key] = props[key];
+      })
+      console.log(Object.keys(props))
+      console.log(element['a'])
+      console.log(children.length)
+      if (children.length > 0) {
+        console.log(typeof (child));
+        children.forEach(child => {
+          if (typeof (child) != 'string') {
+            const test = document.createTextNode(child);
+            element.appendChild(test);
+          }
+        });
+      }
+      // return element;
+    }
+  </script>
 </body>
+
 </html>
